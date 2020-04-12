@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      min-width: 500px;
+      /* 由于未使用相对定位 所以最小宽度为 left + right = 200 + 150 = 350
+        但是当屏幕缩小到350px时 左右的盒子会占用中间盒子的空间 盖住中间盒子的内容
+        可以适当加大这个宽度 即设置为500px 比圣杯布局宽度可以更小
+       */
+    }
+    #container {
+      width: 100%;
+      /* 让其沾满一行并随意拉伸 */
+    }
+    .column {
+      float: left;
+    }
+    #center {
+      /* 父盒子浮动 子盒子用外边距把自身的内容挤到中间位置 宽度继承父元素的100%宽度 */
+      margin-left: 200px;
+      margin-right: 150px;
+      background-color: red;
+    }
+    #left {
+      /* 先使第一个元素浮动并沾满一行 再把后面的两个掉下来的浮动元素 飞到第一个浮动元素的两侧 */
+      width: 200px;
+      margin-left: -100%;
+      background-color: blue;
+    }
+    #right {
+      width: 150px;
+      margin-left: -150px;
+      background-color: yellow;
+    }
+    #footer {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div id="head"></div>
+
+  <div id="container" class="column">
+    <div id="center">123</div>
+  </div>
+
+  <div id="left" class="column">456</div>
+  <div id="right" class="column">789</div>
+
+  <div id="footer"></div>
+</body>
+</html>

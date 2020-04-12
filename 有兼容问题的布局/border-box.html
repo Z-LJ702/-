@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    /* 
+      如果不为dom多添加一个 div 那么需要牺牲兼容性 border-box 兼容IE8
+
+      ****这个布局由于使用的padding值 
+      当两侧的内容高度小于中间区域高度时 中间的背景色会露出****
+    */
+    .column {
+      float: left;
+    }
+    /* 
+      在标准流里 padding会撑开盒子宽度 即内容宽度不计算padding值
+      在border-box中 padding值和border值都计算在内容宽度内
+     */
+    #center {
+      padding-left: 200px;
+      padding-right: 150px;
+      box-sizing: border-box;
+      width: 100%;
+      background-color: red;
+    }
+    /* 
+      当左右两侧的浮动元素在标准流中 
+      使用左边距负值时100%是移动了第一个浮动元素的 内容宽度
+      即不包含左右padding值的宽度 所以会移动到距离标准流的内容区域的右150px位置
+      少移动了左右padding值的距离
+
+      当设置为border-box后 内容宽度把padding值和border计算在内 100%就会移动到屏幕的左侧了
+      
+     */
+    #left {
+      width: 200px;
+      margin-left: -100%;
+      background-color: blue;
+    }
+    #right {
+      width: 150px;
+      /*  当在标准流中右侧浮动元素使用左外边距负值时会少移动第一行浮动元素的左右padding值的距离
+          所以标准流时设置margin-left: -150px; 会看不到黄色元素
+          直到到margin-left: -500px; 时才会全显示出来 150 + 150 + 200 = 500
+          此时是在去掉默认margin和padding的情况下 不然会是492px
+      margin-left: -500px;
+      */
+      margin-left: -150px;
+      background-color: yellow;
+    }
+    #footer {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+  <div id="center" class="column">1230000000000 321</div>
+  <div id="left" class="column">456</div>
+  <div id="right" class="column">789</div>
+  <div id="footer"></div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      min-width: 550px;
+      /* 边界处理 当屏幕宽度达到多少时为最小宽度 结构不会错乱
+        由于左侧的盒子是相对定位 未脱离标准流 应计算它原有位置的宽度
+        left + right + left = 200px + 150px + 200px = 550px
+       */
+    }
+    #head {
+      height: 100px;
+      background-color: #ccc;
+    }
+    #container {
+      padding-left: 200px;
+      padding-right: 150px;
+      /* 
+        圣杯就是左右各有一个抓手 留有空间给两侧盒子
+       */
+    }
+    #container .column {
+      float: left;
+      /* 所有的元素都左浮动 */
+    }
+    #center {
+      width: 100%;
+      /*  中间的盒子 一定要设宽度100% 因为当中间元素里的内容过少时 
+          撑不开浮动元素 结构会错乱 
+          中间元素的dom结构 写在前面 因为中间的内容重要程度高 需要先加载 
+          可根据内容重要程度来选择位置 一般重要的内容dom写在最前面 最先加载
+      */
+      background-color: red;
+    }
+    #left {
+      width: 200px;
+      margin-left: -100%;
+      position: relative;
+      left: -200px;
+      background-color: blue;
+    }
+    #right {
+      width: 150px;
+      margin-right: -150px;
+      /*  我们采用的是全都 左浮动 所以这里用的是 右边距 的负值 */
+
+      /*  如果采用左侧左浮动 右侧右浮动的话 
+          需要右侧也相对定位 并负值操作 较麻烦 
+      float: right;
+      position: relative;
+      right: -150px;
+      这时候就要使用 左边距 负值了
+      margin-left: -150px;        
+      */
+      background-color: yellow;
+    }
+    #footer {
+      clear: both;
+      /* 边界处理 上面盒子内元素都浮动 应清除浮动 避免结构错乱 
+        清除浮动的方法可以选择适合场景的方法 例如伪元素
+       */
+    }
+  </style>
+</head>
+<body>
+  <div id="head"></div>
+  <div id="container">
+    <div id="center" class="column">123</div>
+    <div id="left" class="column">456</div>
+    <div id="right" class="column">789</div>
+  </div>
+  <div id="footer"></div>
+</body>
+</html>

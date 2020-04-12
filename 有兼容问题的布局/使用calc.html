@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 如果不为dom多添加一个 div 那么需要牺牲兼容性 calc兼容需要IE9*/
+    .column {
+      float: left;
+    }
+    #center {
+      margin-left: 200px;
+      margin-right: 150px;
+      width: calc(100% - 350px);
+      /* calc可以计算出自适应宽度 非常方便  */
+      background-color: red;
+    }
+    #left {
+      width: 200px;
+      margin-left: -100%;
+      background-color: blue;
+    }
+    #right {
+      width: 150px;
+      margin-left: -150px;
+      background-color: yellow;
+    }
+    #footer {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+  <div id="center" class="column">123 321</div>
+  <div id="left" class="column">456</div>
+  <div id="right" class="column">789</div>
+  <div id="footer"></div>
+</body>
+</html>

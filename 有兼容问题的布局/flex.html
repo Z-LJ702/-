@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 如果不为dom多添加一个 div 那么需要牺牲兼容性 calc兼容需要IE9*/
+    #container {
+      display: flex;
+    }
+    #center {
+      flex: 1;
+      background-color: red;
+    }
+    #left {
+      flex: 0 0 200px;
+      /* 三个参数 
+        1.flex-grow 项目item的放大比例 默认值为0 即如果存在剩余空间也不放大
+        2.flex-shrink 项目item的缩小比例 默认值为1 即如果空间不足该项目将缩小
+        3.flex-basis 项目item本来的大小 可设置为和width和height的一样的值(200px),为占据固定空间
+        后两个参数可选 */
+      order: -1;
+      /* 排列顺序 默认值为0 不设置时center为0 想让left到左边 设置一个小于0的值即可 */
+      background-color: blue;
+    }
+    #right {
+      flex: 0 0 150px;
+      background-color: yellow;
+    }
+    #footer {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="center">123 321</div>
+    <div id="left">456</div>
+    <div id="right">789</div>
+  </div>
+</body>
+</html>
